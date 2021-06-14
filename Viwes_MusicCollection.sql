@@ -63,4 +63,44 @@ order by S.Duration desc
 select * from vw_MaxSound;
 
 
+--Завдання 2. Всі завдання необхідно виконати по відношенню до бази даних «Музична колекція», описаної в Lesson 1:
+--1. Створіть оновлюване представлення, яке дозволить вставляти нові стилі
+create view vw_StyleNew as
+select S.Style
+from Styles S
+
+insert into vw_StyleNew values ('FOLK');
+
+--2. Створіть оновлюване представлення, яке дозволить вставляти нові пісні
+create view vw_SoundNew as
+select *
+from Sounds S
+
+insert into vw_SoundNew values ('Ukraine folk sing', 7, 4.00, 5, 3);
+
+--3. Створіть оновлюване представлення, яке дозволить оновлювати інформацію про видавця
+create view vw_PublicationUpdate as
+select *
+from Publications P
+
+update vw_PublicationUpdate 
+set Country = 'USA'
+where NamePublication = 'Dolor LLC';
+
+--4. Створіть оновлюване представлення, яке дозволить видаляти виконавців
+create view vw_SingerDelete as
+select *
+from Singers S
+
+delete from vw_SingerDelete
+where NameSinger = 'Orson Norton';
+
+--5. Створіть оновлюване представлення, яке дозволить оновлювати інформацію про конкретного виконавця. Наприклад, Muse.
+create view vw_SingerThisUpdata as
+select *
+from Singers S
+where S.NameSinger = 'Addison Valentine'
+
+update vw_SingerThisUpdata
+set NameSinger = 'Addison';
 
